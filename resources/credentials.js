@@ -1,9 +1,9 @@
 module.exports = {
     pronote: () => (
         {
-            url: 'url',
-            username: 'username',
-            password: 'password',
+            url: 'pronote_url',
+            username: 'pronote_username',
+            password: 'pronote_password',
             cas: 'ac-orleans-tours'
         }
     ),

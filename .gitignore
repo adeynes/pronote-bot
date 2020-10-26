@@ -1,4 +1,5 @@
 node_modules
 .idea
 pronote-bot.iml
-config/.credentials.js
+resources/credentials.js
+resources/hw_history.txt

@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "fs": "0.0.1-security",
     "pronote-api": "^2.2.0",
+    "sha256": "^0.2.0",
     "twitter": "^1.7.1"
   }
 }
