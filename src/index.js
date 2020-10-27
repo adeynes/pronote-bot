@@ -4,13 +4,6 @@ const credentials = require('./../resources/credentials.js');
 const fs = require('fs');
 const sha256 = require('sha256');
 
-async function main() {
-    const pronote_creds = credentials.pronote();
-    const pronote_session = await Pronote.login(pronote_creds.url, pronote_creds.username, pronote_creds.password, pronote_creds.cas);
-
-    const twitter_client = TwitterClient.twitter();
-}
-
 const date_options = {
     weekday: 'long',
     year: 'numeric',
@@ -79,4 +72,27 @@ async function checkGrades(pronote_session, twitter_client) {
     })
 }
 
+async function main() {
+    const checkAll = async () => {
+        const pronote_creds = credentials.pronote();
+        const pronote_session = await Pronote.login(pronote_creds.url, pronote_creds.username, pronote_creds.password, pronote_creds.cas);
+
+        const twitter_client = await TwitterClient.twitter();
+
+        await checkHomework(pronote_session, twitter_client);
+        await checkGrades(pronote_session, twitter_client);
+    };
+
+    await checkAll();
+    setInterval(
+        checkAll,
+        5 * 60 * 1000 // 5 minutes
+    )
+}
+
 main();
+
+process.on('unhandledRejection', (reason, p) => {
+    console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+    process.exit(1);
+});
