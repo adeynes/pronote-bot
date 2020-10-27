@@ -3,3 +3,4 @@ node_modules
 pronote-bot.iml
 resources/credentials.js
 resources/hw_history.txt
+resources/grade_history.txt
